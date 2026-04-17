@@ -498,6 +498,11 @@
     30% { transform: translateY(-6px); }
   }
 
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
+  }
+
   .chat-input-area {
     border-top: 1px solid var(--border);
     padding: 14px 20px;
@@ -722,39 +727,36 @@
   </div>
 
   <nav class="nav">
-    <div class="nav-section">Principal</div>
-    <div class="nav-item active" onclick="showPage('dashboard')">
+    <div class="nav-item active" onclick="showPage('dashboard')" style="margin:8px 0 4px;">
       <span class="nav-icon">⬛</span> Dashboard
+    </div>
+
+    <div class="nav-section" style="margin-top:10px;">Clientes</div>
+    <div class="nav-item" onclick="showPage('clientes')">
+      <span class="nav-icon">👥</span> Clientes
     </div>
     <div class="nav-item" onclick="showPage('triagem')">
       <span class="nav-icon">🔍</span> Triagem IA
       <span class="nav-badge">3</span>
     </div>
-    <div class="nav-item" onclick="showPage('pipeline')">
-      <span class="nav-icon">📋</span> Pipeline de Casos
-    </div>
-    <div class="nav-item" onclick="showPage('squads')">
-      <span class="nav-icon">🤖</span> Squads de Agentes
+    <div class="nav-item" onclick="showPage('score')">
+      <span class="nav-icon">🎯</span> Score de Risco
     </div>
 
-    <div class="nav-section" style="margin-top:8px;">Ferramentas</div>
+    <div class="nav-section" style="margin-top:10px;">Casos</div>
+    <div class="nav-item" onclick="showPage('pipeline')">
+      <span class="nav-icon">📋</span> Pipeline
+    </div>
+    <div class="nav-item" onclick="showPage('pericias')">
+      <span class="nav-icon">🏥</span> Agenda de Perícias
+    </div>
     <div class="nav-item" onclick="showPage('peticoes')">
       <span class="nav-icon">📄</span> Petições IA
     </div>
-    <div class="nav-item" onclick="showPage('clientes')">
-      <span class="nav-icon">👥</span> Clientes
-    </div>
-    <div class="nav-item" onclick="showPage('relatorios')">
-      <span class="nav-icon">📊</span> Relatórios
-    </div>
-    <div class="nav-item">
-      <span class="nav-icon">💬</span> WhatsApp Bot
-      <span class="nav-badge amber">12</span>
-    </div>
 
-    <div class="nav-section" style="margin-top:8px;">Calculadoras</div>
+    <div class="nav-section" style="margin-top:10px;">Ferramentas</div>
     <div class="nav-item" onclick="showPage('calculadora')">
-      <span class="nav-icon">🧮</span> Calculadora Aposentadoria
+      <span class="nav-icon">🧮</span> Calculadora
     </div>
     <div class="nav-item" onclick="showPage('revisao')">
       <span class="nav-icon">🔄</span> Revisão da Vida Toda
@@ -762,35 +764,42 @@
     <div class="nav-item" onclick="showPage('cnis')">
       <span class="nav-icon">📎</span> Leitor de CNIS
     </div>
-
-    <div class="nav-section" style="margin-top:8px;">Operacional</div>
-    <div class="nav-item" onclick="showPage('pericias')">
-      <span class="nav-icon">🏥</span> Agenda de Perícias
-    </div>
-    <div class="nav-item" onclick="showPage('whatsapp')">
-      <span class="nav-icon">💬</span> WhatsApp Integrado
-      <span class="nav-badge amber">12</span>
-    </div>
-    <div class="nav-item" onclick="showPage('portal')">
-      <span class="nav-icon">🌐</span> Portal do Cliente
-    </div>
-    <div class="nav-item" onclick="showPage('score')">
-      <span class="nav-icon">🎯</span> Score de Risco
-    </div>
-
-    <div class="nav-section" style="margin-top:8px;">Alertas & Pesquisa</div>
-    <div class="nav-item">
-      <span class="nav-icon">⚠️</span> Prazos
-      <span class="nav-badge red">2</span>
-    </div>
     <div class="nav-item" onclick="showPage('jurisprudencia')">
       <span class="nav-icon">⚖️</span> Jurisprudência IA
     </div>
+
+    <div class="nav-section" style="margin-top:10px;">Processos</div>
     <div class="nav-item" onclick="showPage('escavador')">
       <span class="nav-icon">🔎</span> Consulta Processual
     </div>
     <div class="nav-item" onclick="showPage('monitoramento')">
       <span class="nav-icon">📡</span> Monitoramento
+    </div>
+    <div class="nav-item">
+      <span class="nav-icon">⚠️</span> Prazos
+      <span class="nav-badge red">2</span>
+    </div>
+
+    <div class="nav-section" style="margin-top:10px;">Comunicação</div>
+    <div class="nav-item" onclick="showPage('whatsapp')">
+      <span class="nav-icon">💬</span> WhatsApp
+      <span class="nav-badge amber">12</span>
+    </div>
+    <div class="nav-item" onclick="showPage('portal')">
+      <span class="nav-icon">🌐</span> Portal do Cliente
+    </div>
+
+    <div class="nav-section" style="margin-top:10px;">IA Jurídica</div>
+    <div class="nav-item" onclick="showPage('chat')" style="background:rgba(59,130,246,0.08);border-left:2px solid var(--blue);">
+      <span class="nav-icon">🧠</span> Assistente Jurídico
+    </div>
+
+    <div class="nav-section" style="margin-top:10px;">Admin</div>
+    <div class="nav-item" onclick="showPage('relatorios')">
+      <span class="nav-icon">📊</span> Relatórios
+    </div>
+    <div class="nav-item" onclick="showPage('squads')">
+      <span class="nav-icon">🤖</span> Squads de Agentes
     </div>
     <div class="nav-item">
       <span class="nav-icon">⚙️</span> Configurações
@@ -2543,10 +2552,121 @@
     </div>
   </div>
 
+  <!-- ASSISTENTE JURÍDICO IA -->
+  <div class="page content" id="page-chat">
+    <div class="ai-banner" style="background:linear-gradient(135deg,rgba(59,130,246,0.12),rgba(168,85,247,0.08));border-color:rgba(59,130,246,0.3);">
+      <div class="banner-left">
+        <div class="banner-icon">🧠</div>
+        <div>
+          <div class="banner-title">Assistente Jurídico IA — Powered by Claude</div>
+          <div class="banner-sub">Especialista em direito previdenciário · Conhece seus casos · Aprende com seus documentos</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <div style="width:8px;height:8px;background:var(--green);border-radius:50%;box-shadow:0 0 6px var(--green)"></div>
+        <span style="font-size:12px;color:var(--cream-mid);">Online</span>
+      </div>
+    </div>
+
+    <div class="grid-2" style="height:calc(100vh - 220px);min-height:500px;">
+
+      <!-- CHAT PRINCIPAL -->
+      <div class="card" style="grid-column:1/2;display:flex;flex-direction:column;">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Chat Jurídico</div>
+            <div class="card-sub" id="chatContextLabel">Contexto geral — sem caso selecionado</div>
+          </div>
+          <select id="casoContexto" onchange="mudarContexto()" style="background:var(--card2);border:1px solid var(--border);border-radius:6px;padding:5px 10px;color:var(--cream);font-size:12px;font-family:Inter;outline:none;">
+            <option value="">Contexto geral</option>
+            <option value="maria">Maria Aparecida Silva — Aposent. Especial</option>
+            <option value="jose">José Carlos Mendes — Auxílio-Doença</option>
+            <option value="ana">Ana Lima Pereira — Recurso Admin.</option>
+            <option value="paulo">Paulo Roberto Souza — Aposent. Especial</option>
+          </select>
+        </div>
+
+        <div style="flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:14px;" id="juridicoChatMsgs">
+          <!-- Mensagem de boas vindas -->
+          <div style="text-align:center;padding:20px 0;">
+            <div style="font-size:36px;margin-bottom:10px;">🧠</div>
+            <div style="font-size:14px;font-weight:700;margin-bottom:6px;">Assistente Jurídico Previdenciário</div>
+            <div style="font-size:12px;color:var(--cream-mid);max-width:400px;margin:0 auto;line-height:1.6;">Pergunte qualquer coisa sobre direito previdenciário. Selecione um caso no topo para que eu analise com os dados reais do cliente.</div>
+          </div>
+
+          <!-- Sugestões rápidas -->
+          <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;" id="sugestoes">
+            <button onclick="perguntaRapida(this)" class="btn btn-ghost btn-sm">Qual o entendimento do STJ sobre atividade especial de enfermagem?</button>
+            <button onclick="perguntaRapida(this)" class="btn btn-ghost btn-sm">Explique o Tema 1.022 do STF</button>
+            <button onclick="perguntaRapida(this)" class="btn btn-ghost btn-sm">Diferença entre BPC e aposentadoria por idade rural</button>
+            <button onclick="perguntaRapida(this)" class="btn btn-ghost btn-sm">Quais documentos para auxílio-doença?</button>
+            <button onclick="perguntaRapida(this)" class="btn btn-ghost btn-sm">Como calcular a regra de pontos atual?</button>
+            <button onclick="perguntaRapida(this)" class="btn btn-ghost btn-sm">Analise o caso selecionado e me diga se vale recorrer</button>
+          </div>
+        </div>
+
+        <div style="border-top:1px solid var(--border);padding:14px 20px;display:flex;gap:10px;align-items:flex-end;">
+          <textarea id="juridicoChatInput" class="chat-input" style="flex:1;resize:none;height:42px;line-height:1.5;padding-top:10px;" placeholder="Digite sua pergunta jurídica..." onkeydown="enviarJuridico(event)" oninput="autoResize(this)"></textarea>
+          <button class="btn btn-primary" style="height:42px;white-space:nowrap;" onclick="enviarJuridico({key:'Enter',force:true})">Enviar</button>
+        </div>
+      </div>
+
+      <!-- PAINEL LATERAL -->
+      <div style="display:flex;flex-direction:column;gap:14px;">
+
+        <!-- BASE DE CONHECIMENTO -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">📚 Base de Conhecimento</div>
+              <div class="card-sub">Documentos que a IA usa para responder</div>
+            </div>
+            <button class="btn btn-primary btn-sm">+ Adicionar</button>
+          </div>
+          <div style="padding:8px 16px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:12px;">
+              <div style="display:flex;align-items:center;gap:8px;"><span>📘</span><span>Lei 8.213/91 — Plano de Benefícios</span></div>
+              <span class="tag green">Ativo</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:12px;">
+              <div style="display:flex;align-items:center;gap:8px;"><span>📘</span><span>Decreto 3.048/99 — Regulamento</span></div>
+              <span class="tag green">Ativo</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:12px;">
+              <div style="display:flex;align-items:center;gap:8px;"><span>⚖️</span><span>Súmulas TNU — Atualizadas 2025</span></div>
+              <span class="tag green">Ativo</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:12px;">
+              <div style="display:flex;align-items:center;gap:8px;"><span>📄</span><span>Minhas petições aprovadas (37)</span></div>
+              <span class="tag blue">37 docs</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;font-size:12px;">
+              <div style="display:flex;align-items:center;gap:8px;"><span>🏛️</span><span>Jurisprudência TRF4 favorável</span></div>
+              <span class="tag blue">12 docs</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- HISTÓRICO -->
+        <div class="card" style="flex:1;">
+          <div class="card-header">
+            <div class="card-title">🕐 Perguntas Recentes</div>
+          </div>
+          <div style="padding:8px 16px;display:flex;flex-direction:column;gap:2px;" id="historicoPerguntas">
+            <div style="padding:8px;border-radius:6px;font-size:11px;color:var(--cream-mid);cursor:pointer;transition:background 0.1s;" onmouseover="this.style.background='var(--card2)'" onmouseout="this.style.background=''">Entendimento do STJ sobre ruído e atividade especial</div>
+            <div style="padding:8px;border-radius:6px;font-size:11px;color:var(--cream-mid);cursor:pointer;" onmouseover="this.style.background='var(--card2)'" onmouseout="this.style.background=''">Qual modalidade vale mais para a Maria?</div>
+            <div style="padding:8px;border-radius:6px;font-size:11px;color:var(--cream-mid);cursor:pointer;" onmouseover="this.style.background='var(--card2)'" onmouseout="this.style.background=''">Prazo para recurso após indeferimento INSS</div>
+            <div style="padding:8px;border-radius:6px;font-size:11px;color:var(--cream-mid);cursor:pointer;" onmouseover="this.style.background='var(--card2)'" onmouseout="this.style.background=''">Como comprovar tempo rural sem registros?</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </main>
 
 <script>
-  const pages = ['dashboard','triagem','pipeline','squads','peticoes','clientes','escavador','monitoramento','relatorios','calculadora','revisao','cnis','pericias','whatsapp','portal','score','jurisprudencia'];
+  const pages = ['dashboard','triagem','pipeline','squads','peticoes','clientes','escavador','monitoramento','relatorios','calculadora','revisao','cnis','pericias','whatsapp','portal','score','jurisprudencia','chat'];
   const titles = {
     dashboard: 'Dashboard',
     triagem: 'Triagem com IA',
@@ -2564,7 +2684,8 @@
     whatsapp: 'WhatsApp Integrado',
     portal: 'Portal do Cliente',
     score: 'Score de Risco',
-    jurisprudencia: 'Jurisprudência IA'
+    jurisprudencia: 'Jurisprudência IA',
+    chat: 'Assistente Jurídico IA'
   };
 
   function showPage(id) {
@@ -2907,6 +3028,125 @@
       container.innerHTML += `<div class="msg agent" style="max-width:80%;"><div style="background:var(--card2);border:1px solid var(--border);border-radius:10px;border-top-left-radius:2px;padding:10px 14px;font-size:13px;">Mensagem recebida! Já passamos para o Dr. Roberto. Em breve ele retorna. 😊</div></div>`;
       container.scrollTop = container.scrollHeight;
     }, 1200);
+  }
+
+  // ── ASSISTENTE JURÍDICO IA ──────────────────────────────
+  const respostasIA = [
+    'Com base na legislação vigente (Lei 8.213/91), para aposentadoria por tempo de contribuição pelo sistema de pontos, o segurado precisa atingir 107 pontos (homem) ou 97 pontos (mulher), com tempo mínimo de contribuição de 35 e 30 anos respectivamente.',
+    'A Revisão da Vida Toda (Tema 1102 do STF) permite que o segurado solicite a recalculação do benefício incluindo contribuições anteriores a julho de 1994. Recomendo verificar se as contribuições anteriores elevam a média salarial.',
+    'Para atividade especial, o segurado precisa comprovar exposição habitual e permanente a agentes nocivos. O PPP (Perfil Profissiográfico Previdenciário) é o documento principal. Sem ele, há jurisprudência favorável com laudos e testemunhos.',
+    'O prazo para contestar indeferimento administrativo no INSS é de 30 dias. Caso já tenha passado, a alternativa é via judicial. Verifique se o benefício pode ser requerido novamente com documentação complementada.',
+    'Para BPC/LOAS, os critérios são: renda familiar per capita inferior a 1/4 do salário mínimo e comprovação de deficiência ou idade acima de 65 anos. O STJ tem admitido análise do caso concreto mesmo fora do critério objetivo.',
+    'A jurisprudência do STJ (REsp 1.555.400) firmou que o tempo de serviço rural sem registro pode ser comprovado por início de prova material corroborado por prova testemunhal.',
+  ];
+
+  let chatJuridicoHistorico = [];
+
+  function enviarJuridico(event) {
+    if (event && event.key && event.key !== 'Enter' && !event.force) return;
+    if (event && event.key === 'Enter' && event.shiftKey) return;
+    if (event && event.preventDefault) event.preventDefault();
+
+    const input = document.getElementById('juridicoChatInput');
+    const msgs = document.getElementById('juridicoChatMsgs');
+    const texto = input.value.trim();
+    if (!texto) return;
+
+    // Ocultar sugestões após primeira mensagem
+    const sugestoes = document.getElementById('sugestoes');
+    if (sugestoes) sugestoes.style.display = 'none';
+
+    msgs.innerHTML += `
+      <div style="display:flex;justify-content:flex-end;margin-bottom:12px;">
+        <div style="background:var(--cream-dim);border:1px solid var(--border);border-radius:10px;border-bottom-right-radius:2px;padding:10px 14px;font-size:13px;max-width:75%;">${texto}</div>
+      </div>`;
+    msgs.scrollTop = msgs.scrollHeight;
+
+    chatJuridicoHistorico.push({ role: 'user', content: texto });
+    input.value = '';
+    input.style.height = '42px';
+
+    // Adicionar ao histórico lateral
+    const hist = document.getElementById('historicoPerguntas');
+    if (hist) {
+      const item = document.createElement('div');
+      item.style.cssText = 'padding:8px;border-radius:6px;font-size:11px;color:var(--cream-mid);cursor:pointer;transition:background .15s;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;';
+      item.title = texto;
+      item.textContent = texto.length > 45 ? texto.slice(0, 45) + '…' : texto;
+      item.onmouseenter = () => item.style.background = 'var(--card2)';
+      item.onmouseleave = () => item.style.background = 'transparent';
+      hist.prepend(item);
+    }
+
+    // Indicador de digitação
+    const typingId = 'typing-' + Date.now();
+    msgs.innerHTML += `
+      <div id="${typingId}" style="display:flex;gap:10px;margin-bottom:12px;">
+        <div style="width:28px;height:28px;background:linear-gradient(135deg,#a855f7,#3b82f6);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;">⚖️</div>
+        <div style="background:var(--card2);border:1px solid var(--border);border-radius:10px;border-top-left-radius:2px;padding:10px 14px;font-size:13px;color:var(--cream-mid);">
+          <span style="display:inline-flex;gap:4px;">
+            <span style="animation:blink 1.2s infinite">●</span>
+            <span style="animation:blink 1.2s .4s infinite">●</span>
+            <span style="animation:blink 1.2s .8s infinite">●</span>
+          </span>
+        </div>
+      </div>`;
+    msgs.scrollTop = msgs.scrollHeight;
+
+    setTimeout(() => {
+      const typing = document.getElementById(typingId);
+      const resposta = respostasIA[Math.floor(Math.random() * respostasIA.length)];
+      const contextoEl = document.getElementById('casoContexto');
+      const contextoVal = contextoEl ? contextoEl.value : '';
+      const ctxText = contextoVal ? `<span style="font-size:11px;color:var(--purple);display:block;margin-bottom:6px;">📁 Contexto: ${contextoEl.options[contextoEl.selectedIndex].text}</span>` : '';
+
+      if (typing) {
+        typing.outerHTML = `
+          <div style="display:flex;gap:10px;margin-bottom:12px;">
+            <div style="width:28px;height:28px;background:linear-gradient(135deg,#a855f7,#3b82f6);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;">⚖️</div>
+            <div style="background:var(--card2);border:1px solid var(--border);border-radius:10px;border-top-left-radius:2px;padding:10px 14px;font-size:13px;max-width:80%;">${ctxText}${resposta}</div>
+          </div>`;
+      }
+      msgs.scrollTop = msgs.scrollHeight;
+      chatJuridicoHistorico.push({ role: 'assistant', content: resposta });
+    }, 1800 + Math.random() * 800);
+  }
+
+  function perguntaRapida(btn) {
+    const input = document.getElementById('juridicoChatInput');
+    if (!input) return;
+    input.value = btn.textContent.trim();
+    input.focus();
+    enviarJuridico(null);
+  }
+
+  function mudarContexto() {
+    const sel = document.getElementById('casoContexto');
+    const label = document.getElementById('chatContextLabel');
+    if (!sel || !label) return;
+    const map = {
+      '': 'Contexto geral — sem caso selecionado',
+      maria: 'Maria Aparecida Silva — Aposent. Especial',
+      jose: 'José Carlos Mendes — Auxílio-Doença',
+      ana: 'Ana Lima Pereira — Recurso Admin.',
+      paulo: 'Paulo Roberto Souza — Aposent. Especial',
+    };
+    label.textContent = map[sel.value] || 'Contexto atualizado';
+    label.style.color = sel.value === '' ? 'var(--cream-mid)' : 'var(--green)';
+
+    const msgs = document.getElementById('juridicoChatMsgs');
+    if (msgs && sel.value !== '') {
+      msgs.innerHTML += `
+        <div style="text-align:center;margin:8px 0;">
+          <span style="font-size:11px;color:var(--purple);background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.2);border-radius:20px;padding:3px 10px;">Contexto alterado: ${map[sel.value]}</span>
+        </div>`;
+      msgs.scrollTop = msgs.scrollHeight;
+    }
+  }
+
+  function autoResize(el) {
+    el.style.height = 'auto';
+    el.style.height = Math.min(el.scrollHeight, 120) + 'px';
   }
 </script>
 </body>
